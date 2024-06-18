@@ -1,0 +1,396 @@
+@charset "UTF-8";
+/**
+* Подключение шрифтов локально из папки "./src/fonts"
+*/
+/** Подключение переменных */
+:root {
+  --bs-font-family: "Lexend", sans-serif;
+  --bs-font-size: 16px;
+  --bs-font-weight: 400;
+  --bs-line-height: 1;
+  --bs-font-color: #222;
+  --bs-transition: .3s ease-in-out;
+  --bs-radius: 10px;
+  --primary-color: #131313;
+  --primary-hover-color: #2d2d2d;
+  --secondary-color: #ff4040;
+  --white-color: #fff;
+  --black-color: #131313;
+  --bs-shadow: 0px 2px 3px rgba(#000, 10%), 0px 8px 3px rgba(#000, 10%);
+  --hover-shadow: 0 0 5px 0 rgba(#000, 10%),
+                  0 0 10px 0 rgba(#000, 10%),
+                  0 0 15px 0 rgba(#000, 10%);
+}
+
+/**
+* Подключение sass function и mixins и extends стилей
+*/
+/* Шаблоны (заготовки)
+* @extend %имя шаблона;
+*/
+/** Обнуление */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+*, *:before, *:after, *:hover {
+  box-sizing: border-box;
+}
+*:focus, *:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html {
+  opacity: 0;
+  scroll-behavior: smooth;
+  transition: opacity 0.8s ease-in-out;
+}
+html.loaded {
+  opacity: 1;
+}
+html.lock {
+  overflow: hidden;
+  touch-action: none;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 320px;
+}
+
+body {
+  overscroll-behavior: none;
+  font-size: var(--bs-font-size);
+  font-family: "Merriweather", "Montserrat", serif;
+  font-weight: var(--bs-font-weight);
+  line-height: var(--bs-line-height);
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  background: none;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  user-select: none;
+}
+a:focus, a:active {
+  outline: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+sup {
+  color: inherit;
+}
+
+/**
+* Библиотеки
+* раскомментировать для использования
+*/
+/**
+* Подключение custom scrollbar для всего сайта
+*/
+/**
+* Общие параметры, шаблоны(заготовки) и вспомогательные классы
+*/
+/** Базовые анимации: */
+@keyframes show-header {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes fade-up-big {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+/** Стили для полноэкранного блока: */
+/*
+* (i) Стили будут применяться ко
+* всем классам содержащим *__container
+* Например header__container, main__container и т.д.
+*/
+[class*=-ibg] {
+  position: relative;
+}
+[class*=-ibg] img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+[class*=-ibg_contain] img {
+  object-fit: contain;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+}
+
+a {
+  transition: all 0.25s ease;
+}
+
+/**
+* БЕМ блоки используемые во всё проекте
+*/
+body.lock-scroll {
+  overflow: hidden;
+}
+
+.container {
+  padding: 0 16px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .container {
+    padding: 0 25px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    padding: 0 60px;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    padding: 0 90px;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    padding: 0 140px;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    padding: 0 240px;
+  }
+}
+
+/**
+* Подключение стилей отдельных блоков и секций
+*/
+.home-page__section {
+  padding: 82px 0;
+  background: #E3E3EF;
+}
+@media (max-width: 1025px) {
+  .home-page__section {
+    padding: 42px 0;
+    background: #E3E3EF;
+  }
+}
+.home-page__section .hompage__container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+.home-page__section .hompage__container .home__info {
+  display: flex;
+  gap: 40px;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home__info {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home__info .info__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.home-page__section .hompage__container .home__info .info__block .info__images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 13px;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home__info .info__block .info__images {
+    margin-bottom: 16px;
+  }
+}
+.home-page__section .hompage__container .home__info .info__block .info__images img {
+  width: 40px;
+  height: 40px;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home__info .info__block .info__images img {
+    width: 56px;
+    height: 56px;
+  }
+}
+.home-page__section .hompage__container .home__info .info__block .info__text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #79798F;
+  max-width: 207px;
+}
+.home-page__section .hompage__container .home-center__container .home__title {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 32px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #42376A;
+  margin-bottom: 12px;
+}
+.home-page__section .hompage__container .home-center__container .home__text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #282336;
+  max-width: 454px;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home-center__container .home__text {
+    margin: 0 auto;
+  }
+}
+.home-page__section .hompage__container .home__info-slider {
+  display: none;
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .home-page__section .hompage__container .home__info-slider {
+    display: block;
+  }
+}
+.home-page__section .hompage__container .home__info-slider .slick-dots {
+  display: flex;
+  width: 100%;
+  max-width: 370px;
+  margin: 25px auto 0;
+}
+.home-page__section .hompage__container .home__info-slider .slick-dots li {
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+.home-page__section .hompage__container .home__info-slider .slick-dots li button {
+  font-size: 0;
+  height: 1px;
+  background: #CDCDE0;
+  width: 100%;
+}
+.home-page__section .hompage__container .home__info-slider .slick-dots .slick-active button {
+  height: 2px;
+  background: #000000;
+}
+/*# sourceMappingURL=main.min.css.map */
+
